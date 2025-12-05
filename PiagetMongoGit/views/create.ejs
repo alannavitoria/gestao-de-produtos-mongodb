@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Produto</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="navbar"><a href="/" class="navbar-brand">Gestão de Produtos</a></div>
+    </div>
+    <div class="container">
+        <h1>Criar Novo Produto</h1>
+
+        <div class="form-container">
+            <form action="/produtos" method="POST">
+                <div class="form-group">
+                    <label for="nomeDoProduto">Nome do Produto:</label>
+                    <input type="text" class="form-control" id="nomeDoProduto" name="nomeDoProduto" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricaoDoProduto">Descrição do Produto:</label>
+                    <textarea class="form-control" id="descricaoDoProduto" name="descricaoDoProduto" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="codigoDoProduto">Código do Produto:</label>
+                    <input type="text" class="form-control" id="codigoDoProduto" name="codigoDoProduto" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="precoDoProduto">Preço do Produto:</label>
+                    <input type="number" step="0.01" class="form-control" id="precoDoProduto" name="precoDoProduto" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Criar</button>
+                    <a href="/produtos" class="btn">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

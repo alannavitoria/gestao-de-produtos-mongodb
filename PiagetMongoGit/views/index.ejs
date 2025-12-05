@@ -1,0 +1,173 @@
+<!-- <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Produtos</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="navbar"><a href="/" class="navbar-brand">Gestão de Produtos</a></div>
+    </div>
+    <div class="container">
+        <h1>Lista de Produtos</h1>
+
+        <div style="margin: 20px 0;"><a href="/produtos/create" class="btn btn-success">Criar Novo Produto</a></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome do Produto</th>
+                    <th>Descrição</th>
+                    <th>Código</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% produtos.forEach(produto=> { %>
+                    <tr>
+                        <td><%= produto.nomeDoProduto %></td>
+                        <td><%= produto.descricaoDoProduto %></td>
+                        <td><%= produto.codigoDoProduto %></td>
+                        <td>R$ <%= produto.precoDoProduto.toFixed(2) %></td>
+                        <td class="actions">
+                            <a href="/produtos/<%= produto._id %>" class="action-link">Detalhes</a>
+                            <a href="/produtos/<%= produto._id %>/edit" class="action-link">Editar</a>
+                            <form action="/produtos/<%= produto._id %>?_method=DELETE" method="POST" style="display: inline;">
+                                <button type="submit" class="action-link delete" onclick="return confirm('Tem certeza que deseja deletar este produto?')">Deletar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Produtos - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="sidebar-brand">Gestão de Produtos</a>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="/" class="active">📦 Produtos</a></li>
+            <li><a href="/produtos/create">➕ Novo Produto</a></li>
+            <li><a href="#">📈 Relatórios</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div></div> <!-- Empty div for spacing -->
+            <div class="user-info">
+                <span>Olá, Usuário</span>
+                <div class="user-avatar">👤</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total de Produtos</h3>
+                        <div class="stat-number">
+                            <%= produtos.length %>
+                        </div>
+                    </div>
+                    <div class="stat-icon">📦</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Valor Total</h3>
+                        <div class="stat-number">R$ <%= calcularValorTotal(produtos) %>
+                        </div>
+                    </div>
+                    <div class="stat-icon">💰</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Produtos com Estoque Baixo</h3>
+                        <div class="stat-number">0</div>
+                    </div>
+                    <div class="stat-icon">⚠️</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Novos este Mês</h3>
+                        <div class="stat-number">0</div>
+                    </div>
+                    <div class="stat-icon">🆕</div>
+                </div>
+            </div>
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Lista de Produtos</h1>
+                <a href="/produtos/create" class="btn btn-success">➕ Criar Novo Produto</a>
+            </div>
+
+            <!-- Products Table -->
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome do Produto</th>
+                            <th>Descrição</th>
+                            <th>Código</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% produtos.forEach(produto=> { %>
+                            <tr>
+                                <td>
+                                    <%= produto.nomeDoProduto %>
+                                </td>
+                                <td>
+                                    <%= produto.descricaoDoProduto %>
+                                </td>
+                                <td>
+                                    <%= produto.codigoDoProduto %>
+                                </td>
+                                <td>R$ <%= produto.precoDoProduto.toFixed(2) %>
+                                </td>
+                                <td class="actions">
+                                    <a href="/produtos/<%= produto._id %>" class="action-link">👁️ Detalhes</a>
+                                    <a href="/produtos/<%= produto._id %>/edit" class="action-link">✏️ Editar</a>
+                                    <form action="/produtos/<%= produto._id %>?_method=DELETE" method="POST"
+                                        style="display: inline;">
+                                        <button type="submit" class="action-link delete"
+                                            onclick="return confirm('Tem certeza que deseja deletar este produto?')">🗑️
+                                            Deletar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="navbar"><a href="/" class="navbar-brand">Gestão de Produtos</a></div>
+    </div>
+    <div class="container">
+        <h1>Detalhes do Produto</h1>
+
+        <div class="details-container">
+            <div class="dl-horizontal">
+                <dt>Nome do Produto:</dt>
+                <dd><%= produto.nomeDoProduto %></dd>
+
+                <dt>Descrição do Produto:</dt>
+                <dd><%= produto.descricaoDoProduto %></dd>
+
+                <dt>Código do Produto:</dt>
+                <dd><%= produto.codigoDoProduto %></dd>
+
+                <dt>Preço do Produto:</dt>
+                <dd>R$ <%= produto.precoDoProduto.toFixed(2) %></dd>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <a href="/produtos/<%= produto._id %>/edit" class="btn">Editar</a>
+                <form action="/produtos/<%= produto._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este produto?')">Deletar</button>
+                </form>
+                <a href="/produtos" class="btn">Voltar para Lista</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
